@@ -1,2 +1,2 @@
 # Sudoku
-my version of sudoku
+Simple sudoku version
