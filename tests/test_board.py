@@ -50,4 +50,3 @@ def test_clear_cell():
 
     b = b.clear(2, 3)
     assert 5 not in b.box_values(2, 3)
-

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import List, Tuple, overload, Union, Optional
+from typing import List, Optional, Tuple, Union, overload
 
 Grid = List[List[int]]
 
@@ -52,7 +52,9 @@ class Board:
     @overload
     def get(self, r: None, c: int) -> List[int]: ...
 
-    def get(self, r: Optional[int] = None, c: Optional[int] = None) -> Union[int, List[int]]:
+    def get(
+        self, r: Optional[int] = None, c: Optional[int] = None
+    ) -> Union[int, List[int]]:
         """
         If both r and c are provided, return value at [row][col].
         If only r is provided, return the entire row.
@@ -69,7 +71,6 @@ class Board:
             return [self.grid[row][c] for row in range(9)]
         else:
             raise ValueError("Either r or c must be provided")
-    
 
     def set(self, r: int, c: int, value: int) -> "Board":
         """
