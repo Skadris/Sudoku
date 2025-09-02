@@ -1,6 +1,9 @@
 from __future__ import annotations
+
 from typing import Iterable
+
 from .board import Board
+
 
 def no_duplicates(nums: Iterable[int]) -> bool:
     """
@@ -16,7 +19,8 @@ def no_duplicates(nums: Iterable[int]) -> bool:
         seen.add(n)
     return True
 
-def is_valid_move(board: Board, r:int, c:int, value:int) -> bool:
+
+def is_valid_move(board: Board, r: int, c: int, value: int) -> bool:
     """
     :param board: board object.
     :param r: row number.
@@ -30,8 +34,9 @@ def is_valid_move(board: Board, r:int, c:int, value:int) -> bool:
         return False
     row_ok = value not in board.row_values(r)
     col_ok = value not in board.col_values(c)
-    box_ok = value not in board.box_values(r,c)
+    box_ok = value not in board.box_values(r, c)
     return row_ok and col_ok and box_ok
+
 
 def is_valid_board(board: Board) -> bool:
     """
@@ -46,12 +51,15 @@ def is_valid_board(board: Board) -> bool:
         if not no_duplicates(board.get(c)):
             return False
 
-    for br in range(0,9,3):
-        for bc in range(0,9,3):
-            if not no_duplicates([board.grid[br+dr][bc+dc] for dr in range(3) for dc in range(3)]):
+    for br in range(0, 9, 3):
+        for bc in range(0, 9, 3):
+            if not no_duplicates(
+                [board.grid[br + dr][bc + dc] for dr in range(3) for dc in range(3)]
+            ):
                 return False
 
     return True
+
 
 def is_complete(board: Board) -> bool:
     """

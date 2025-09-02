@@ -1,11 +1,14 @@
 from __future__ import annotations
+
 from dataclasses import dataclass, field
 from typing import List, Optional, Tuple
 
 Grid = List[List[int]]
 
+
 def _blank_grid() -> Grid:
     return [[0 for _ in range(9)] for _ in range(9)]
+
 
 @dataclass
 class Board:
@@ -14,7 +17,6 @@ class Board:
     """
 
     grid: Grid = field(default_factory=_blank_grid)
-
 
     def __post_init__(self) -> None:
         """
@@ -29,7 +31,6 @@ class Board:
                 v = self.grid[r][c]
                 if not (0 <= v <= 9):
                     raise ValueError("Board cell value must be between 0 and 9")
-
 
     @staticmethod
     def from_rows(rows: Grid) -> "Board":
@@ -90,7 +91,7 @@ class Board:
         self._assert_rc(r, c)
         br = (r // 3) * 3
         bc = (c // 3) * 3
-        return [self.grid[br+dr][bc+dc] for dr in range(3) for dc in range(3)]
+        return [self.grid[br + dr][bc + dc] for dr in range(3) for dc in range(3)]
 
     def empty_cells(self) -> List[Tuple[int, int]]:
         """
@@ -131,12 +132,10 @@ class Board:
             row = []
             for c in range(9):
                 v = self.grid[r][c]
-                row.append(str(v) if v != 0 else '.')
+                row.append(str(v) if v != 0 else ".")
                 if c % 3 == 2 and c != 8:
-                    row.append('|')
-            lines.append(''.join(row))
+                    row.append("|")
+            lines.append("".join(row))
             if r % 3 == 2 and r != 8:
-                lines.append('------+-------+------')
-        return '\n'.join(lines)
-
-
+                lines.append("------+-------+------")
+        return "\n".join(lines)
