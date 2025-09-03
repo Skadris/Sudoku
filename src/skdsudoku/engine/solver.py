@@ -54,6 +54,6 @@ def has_unique_solution(board: Board) -> bool:
                 if backtrack(b.set(r, c, v)):
                     return True
         return False
-    
+
     backtrack(board)
     return solutions == 1
